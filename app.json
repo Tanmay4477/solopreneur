@@ -24,8 +24,22 @@
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
+    "splash": {
+      "backgroundColor": "#000000",
+      "image": "./assets/images/logo.png",
+      "imageWidth": 200,
+      "resizeMode": "contain"
+    },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "expo-splash-screen",{
+          "backgroundColor": "#000000",
+          "image": "./assets/images/logo.png",
+          "imageWidth": 200,
+          "resizeMode": "contain"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
