@@ -33,13 +33,15 @@
     "plugins": [
       "expo-router",
       [
-        "expo-splash-screen",{
+        "expo-splash-screen",
+        {
           "backgroundColor": "#000000",
           "image": "./assets/images/logo.png",
           "imageWidth": 200,
           "resizeMode": "contain"
         }
-      ]
+      ],
+      "expo-asset"
     ],
     "experiments": {
       "typedRoutes": true
