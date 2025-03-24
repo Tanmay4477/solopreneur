@@ -7,7 +7,7 @@ type ButtonType = {
 export default function Button({children, onPress}: ButtonType) {
   return (
     <TouchableOpacity 
-      className="bg-normal rounded-lg w-full" 
+      className="bg-normal rounded-lg w-full py-4" 
       onPress={onPress}
     >
       <Text className="text-black font-bold text-center text-base">
