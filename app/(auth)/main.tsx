@@ -6,15 +6,27 @@ export default function Main() {
     const router = useRouter();
     const localImage = Asset.fromModule(require("../../assets/images/emoji2.png")).uri;
     const firstBtnFn = () => {
-        router.replace("/(auth)/register")
-    }
+        router.push("/(auth)/register");
+    };
     const secondBtnFn = () => {
-        router.push("/(auth)/login")
-    }
-    const title = "It is not just Learning, It is a Promise"
-    const description = "Main Page of deciding register and login and ipsum is the next world of doing things that you want and experimenting the things you like."
+        router.push("/(auth)/login");
+    };
+    const title = "It is not just Learning, It is a Promise";
+    const description = "Main Page of deciding register and login and ipsum is the next world of doing things that you want and experimenting the things you like.";
+    const firstBtnText = "Register";
+    const secondBtnText = "Login";
+    const btnVariant = "white"
 
     return (
-        <Onboarding index={5} localImage={localImage} title={title} description={description} firstBtnFn={firstBtnFn} secondBtnFn={secondBtnFn}/>
+        <Onboarding 
+            index={5} 
+            localImage={localImage} 
+            title={title} 
+            description={description} 
+            firstBtnFn={firstBtnFn} 
+            secondBtnFn={secondBtnFn} 
+            firstBtnText={firstBtnText} 
+            secondBtnText={secondBtnText}
+            btnVariant={btnVariant} />
     )
 }
