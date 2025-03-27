@@ -2,22 +2,27 @@ import { useState } from 'react';
 import { Image, SafeAreaView, Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { Feather, FontAwesome } from '@expo/vector-icons';
 import Button from '@/src/components/ui/Button';
+import { useRouter } from 'expo-router';
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
     const [secureTextEntry, setSecureTextEntry] = useState(true);
+    const router = useRouter();
 
     const loginFunction = () => {
+
         console.log("Login is pressed", { email, password, rememberMe });
     };
 
     const handleForgotPassword = () => {
+        router.push('/(auth)/forget-password')
         console.log("Forgot password pressed");
     };
 
     const handleSignUp = () => {
+        router.push('/(auth)/register');
         console.log("Sign up pressed");
     };
 

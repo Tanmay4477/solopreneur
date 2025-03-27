@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Image, SafeAreaView, Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { Feather, FontAwesome } from '@expo/vector-icons';
 import Button from '@/src/components/ui/Button';
+import { useRouter } from 'expo-router';
 
 export default function Register() {
     const [name, setName] = useState('');
@@ -9,6 +10,7 @@ export default function Register() {
     const [phone, setPhone] = useState('');
     const [countryCode, setCountryCode] = useState('+91');
     const [showCountryPicker, setShowCountryPicker] = useState(false);
+    const router = useRouter();
     
     // Common country codes
     const countryCodes = [
@@ -43,6 +45,7 @@ export default function Register() {
     };
 
     const handleLogin = () => {
+        router.push('/(auth)/login')
         console.log("Login pressed - navigate to login screen");
     };
 
