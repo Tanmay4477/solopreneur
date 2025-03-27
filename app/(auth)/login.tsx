@@ -12,7 +12,7 @@ export default function Login() {
     const router = useRouter();
 
     const loginFunction = () => {
-
+        router.push('/(tabs)')
         console.log("Login is pressed", { email, password, rememberMe });
     };
 
