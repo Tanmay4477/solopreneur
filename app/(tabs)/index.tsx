@@ -163,34 +163,6 @@ export default function Home(): JSX.Element {
                     </ScrollView>
                 </View>
             </ScrollView>
-            
-            {/* Bottom Navigation */}
-            <View className="flex-row justify-around items-center py-4 bg-black border-t border-gray-900">
-                <TouchableOpacity className="items-center">
-                    <Ionicons name="home" size={24} color="#4CAF50" />
-                    <Text className="text-xs text-green-500 mt-1">Home</Text>
-                </TouchableOpacity>
-                
-                <TouchableOpacity className="items-center">
-                    <Ionicons name="newspaper-outline" size={24} color="#9CA3AF" />
-                    <Text className="text-xs text-gray-400 mt-1">Marketplace</Text>
-                </TouchableOpacity>
-                
-                <TouchableOpacity className="items-center">
-                    <Ionicons name="book-outline" size={24} color="#9CA3AF" />
-                    <Text className="text-xs text-gray-400 mt-1">Course</Text>
-                </TouchableOpacity>
-                
-                <TouchableOpacity className="items-center">
-                    <Ionicons name="people-outline" size={24} color="#9CA3AF" />
-                    <Text className="text-xs text-gray-400 mt-1">Community</Text>
-                </TouchableOpacity>
-                
-                <TouchableOpacity className="items-center">
-                    <Ionicons name="person-outline" size={24} color="#9CA3AF" />
-                    <Text className="text-xs text-gray-400 mt-1">Course</Text>
-                </TouchableOpacity>
-            </View>
         </SafeAreaView>
     );
 }

@@ -6,7 +6,7 @@ import Feather from '@expo/vector-icons/Feather';
 
 export default function TabLayout() {
     return (
-        <Tabs screenOptions={{ tabBarActiveTintColor: '#8eb638' }}>
+        <Tabs screenOptions={{ tabBarActiveTintColor: '#8eb638', tabBarStyle: {backgroundColor: 'black'} }}>
             <Tabs.Screen name="index" options={{ headerShown: false, title: 'Home', tabBarIcon: ({color}) => <FontAwesome size={28} name="home" color={color} />}} />
             <Tabs.Screen name="marketplace" options={{ headerShown: false, title: 'Marketplace', tabBarIcon: ({color}) => <Ionicons size={28} name="storefront" color={color} />}} />
             <Tabs.Screen name="course" options={{ headerShown: false, title: 'Course', tabBarIcon: ({color}) => <Feather size={28} name="book-open" color={color} />}} />
