@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Image, SafeAreaView, Text, View, TextInput, TouchableOpacity, ScrollView, StatusBar, ImageSourcePropType } from 'react-native';
-import { Feather, Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import CourseCard from '@/src/components/home-page/CourseCard';
-import MarketplaceCard from '@/src/components/home-page/Marketplace';
+import MarketplaceSection from '@/src/components/home-page/MarketplaceSection';
+import { MarketplaceItemData } from '@/src/components/home-page/MarketplaceSection';
 
 export interface Course {
   id: number;
@@ -15,12 +16,6 @@ export interface Course {
   originalPrice?: number;
   thumbnail: ImageSourcePropType;
   hasVideo: boolean;
-}
-
-export interface MarketplaceItem {
-  id: number;
-  title: string;
-  thumbnail: ImageSourcePropType;
 }
 
 export default function Home(): JSX.Element {
@@ -52,18 +47,69 @@ export default function Home(): JSX.Element {
         }
     ];
 
-    const marketplaceItems: MarketplaceItem[] = [
+    // Marketplace data - converted to match our new component's structure
+    const featuredItems: MarketplaceItemData[] = [
         {
-            id: 1,
-            title: 'Design Services Pack',
-            thumbnail: require('@/assets/images/emoji2.png')
+          id: '1',
+          thumbnail: require('@/assets/images/emoji5.png'),
+          category: 'Electronics',
+          title: 'Apple iPhone 14 Pro Max 256GB',
+          startingPrice: 1099.99,
+          sellerCount: 23,
+          rating: 4.7
         },
         {
-            id: 2,
-            title: 'Development Pack',
-            thumbnail: require('@/assets/images/emoji1.png')
+          id: '2',
+          thumbnail: require('@/assets/images/emoji3.png'),
+          category: 'Home & Kitchen',
+          title: 'KitchenAid Stand Mixer Professional',
+          startingPrice: 349.99,
+          sellerCount: 18,
+          rating: 4.8
         }
-    ];
+      ];
+      
+      const trendingItems: MarketplaceItemData[] = [
+        {
+          id: '3',
+          thumbnail: require('@/assets/images/emoji2.png'),
+          category: 'Fashion',
+          title: 'Nike Air Jordan 1 High OG',
+          startingPrice: 179.99,
+          sellerCount: 42,
+          rating: 4.5
+        },
+        {
+          id: '4',
+          thumbnail: require('@/assets/images/emoji3.png'),
+          category: 'Tech',
+          title: 'Sony WH-1000XM5 Headphones',
+          startingPrice: 399.99,
+          sellerCount: 15,
+          rating: 4.9
+        }
+      ];
+
+      const recentItems: MarketplaceItemData[] = [
+        {
+          id: '5',
+          thumbnail: require('@/assets/images/emoji2.png'),
+          category: 'Sports',
+          title: 'Wilson Evolution Basketball',
+          startingPrice: 59.99,
+          sellerCount: 12,
+          rating: 4.6
+        },
+        {
+          id: '6',
+          thumbnail: require('@/assets/images/emoji5.png'),
+          category: 'Books',
+          title: 'Atomic Habits by James Clear',
+          startingPrice: 24.99,
+          sellerCount: 30,
+          rating: 4.8
+        }
+      ];
 
     const navigateToSearch = (): void => {
         console.log('Navigate to search with query:', searchQuery);
@@ -75,14 +121,19 @@ export default function Home(): JSX.Element {
         // router.push(`/(courses)/${courseId}`);
     };
 
-    const navigateToMarketplace = (itemId: number): void => {
-        console.log('Navigate to marketplace item:', itemId);
-        // router.push(`/(marketplace)/${itemId}`);
+    const navigateToMarketplace = (item: MarketplaceItemData): void => {
+        console.log('Navigate to marketplace item:', item.id);
+        // router.push(`/(marketplace)/${item.id}`);
     };
     
     const navigateToProfile = (): void => {
         console.log('Navigate to profile');
         // router.push('/(profile)');
+    };
+
+    const handleSeeAllPress = (category: string): void => {
+        console.log('See all items in category:', category);
+        // router.push(`/(marketplace)/category/${category}`);
     };
 
     return (
@@ -145,22 +196,38 @@ export default function Home(): JSX.Element {
                     </ScrollView>
                 </View>
                 
-                {/* Top Marketplace section */}
+                {/* Marketplace Sections - Using our new components */}
+                <View className="mb-6">
+                    <Text className="text-white text-2xl font-bold mb-4 px-6">Featured Items</Text>
+                    <MarketplaceSection
+                        title=""
+                        items={featuredItems}
+                        layout="featured"
+                        onItemPress={navigateToMarketplace}
+                        onSeeAllPress={() => handleSeeAllPress('featured')}
+                    />
+                </View>
+
+                <View className="mb-6">
+                    <Text className="text-white text-2xl font-bold mb-4 px-6">Trending Now</Text>
+                    <MarketplaceSection
+                        title=""
+                        items={trendingItems}
+                        layout="horizontal"
+                        onItemPress={navigateToMarketplace}
+                        onSeeAllPress={() => handleSeeAllPress('trending')}
+                    />
+                </View>
+
                 <View className="mb-8">
-                    <Text className="text-white text-2xl font-bold mb-4 px-6">Top Market Place</Text>
-                    <ScrollView 
-                        horizontal 
-                        showsHorizontalScrollIndicator={false}
-                        contentContainerStyle={{ paddingLeft: 24, paddingRight: 12 }}
-                    >
-                        {marketplaceItems.map(item => (
-                            <MarketplaceCard 
-                                key={item.id} 
-                                item={item} 
-                                onPress={() => navigateToMarketplace(item.id)}
-                            />
-                        ))}
-                    </ScrollView>
+                    <Text className="text-white text-2xl font-bold mb-4 px-6">Recently Added</Text>
+                    <MarketplaceSection
+                        title=""
+                        items={recentItems}
+                        layout="grid"
+                        onItemPress={navigateToMarketplace}
+                        onSeeAllPress={() => handleSeeAllPress('recent')}
+                    />
                 </View>
             </ScrollView>
         </SafeAreaView>

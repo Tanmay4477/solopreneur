@@ -3,6 +3,8 @@ import { Image, SafeAreaView, Text, View, TextInput, TouchableOpacity, KeyboardA
 import { Feather, FontAwesome } from '@expo/vector-icons';
 import Button from '@/src/components/ui/Button';
 import { useRouter } from 'expo-router';
+import { useDispatch } from 'react-redux';
+import { loginFailure, loginStart, loginSuccess } from '@/src/redux/slices/authSlice';
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -10,9 +12,17 @@ export default function Login() {
     const [rememberMe, setRememberMe] = useState(false);
     const [secureTextEntry, setSecureTextEntry] = useState(true);
     const router = useRouter();
+    const dispatch = useDispatch();
 
     const loginFunction = () => {
-        router.push('/(tabs)')
+        dispatch(loginStart());
+        try {
+            // my api call for login
+            dispatch(loginSuccess({user: { id: 'id from the api', name: 'name from the api'}, token: 'token from the api'}));
+            router.push('/(tabs)')
+        } catch (error) {
+            dispatch(loginFailure());
+        }
         console.log("Login is pressed", { email, password, rememberMe });
     };
 

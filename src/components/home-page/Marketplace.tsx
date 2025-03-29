@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { MarketplaceItem } from '@/app/(tabs)/index';
+import MarketplaceItem, {MarketplaceItemProps}  from '@/src/components/home-page/MarketplaceItem';
 
 interface MarketplaceCardProps {
-    item: MarketplaceItem;
+    item: MarketplaceItemProps;
     onPress: () => void;
 }
 
